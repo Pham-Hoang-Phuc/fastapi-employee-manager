@@ -16,8 +16,18 @@ class EmployeeBase(BaseModel):
     department: Departments | None = None
 
 class EmployeeCreate(EmployeeBase):
-    password: str = Field(..., min_length=8, description="mật khẩu cần hơn 8 kí tự")
+    hashed_password: str = Field(..., min_length=8, description="mật khẩu cần hơn 8 kí tự")
+    disabled: bool | None = Field(False)
     salary: float = Field(None, gt=0)
 
 class EmployeePublic(EmployeeBase):
     id: int 
+
+
+# Token for authenticate
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, Boolean
 from database import Base
 
 class Employee(Base):
@@ -8,5 +8,6 @@ class Employee(Base):
     username = Column(String(20), nullable=False)
     email = Column(String(20), unique=True, index=True)
     department = Column(String(10))
-    password = Column(String(20))
+    hashed_password = Column(String(20))
+    disabled = Column(Boolean)
     salary = Column(Float)
